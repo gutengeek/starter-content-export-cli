@@ -5,13 +5,13 @@ I. [Starter Content Export CLI](https://gutengeek.com/) is a part of theme devel
 
 ## Installation
 
-You can install `Starter Content Export CLI` manually via WordPress plugin directory or upload files to your server at wp-content/plugin
+You can install `Starter Content Export CLI` manually via WordPress plugin directory or upload files to your server at wp-content/plugins directory
 
 ## Usage
 
 ```bash
 cd path/to/wordpress-prodject
-wp wp starter-content export --theme-mod-prefix=theme-mod-prefix
+wp starter-content export --theme-mod-prefix=theme-mod-prefix
 
 // --theme-mod-prefix is optional
 ```
@@ -20,6 +20,6 @@ And then check your path `wp-content/your-theme/inc/starter-content` and `wp-con
 
 ## Connect
 
-* [Website](https://gutengeek.com/)
+* [gutengeek](https://gutengeek.com/)
 
 
