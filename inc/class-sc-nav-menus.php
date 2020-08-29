@@ -35,12 +35,12 @@ if ( ! class_exists( 'SC_Nav_Menus' ) ) :
 						'type' => $menu_item->type,
 						'object' => $menu_item->object,
 						'menu_item_parent' => absint( $menu_item->menu_item_parent ),
-						'object_id' => '{{' . $post_key . '}}'
+						'object_id' => '{{' . $post_key . '}}',
+						'title' => $menu_item->title
 					);
 
 					if ( $menu_item->type === 'custom' ) {
 						$args = array_merge( $args, array(
-							'title' => $menu_item->title,
 							'url' => $menu_item->url
 						) );
 						unset( $args['object_id'] );
@@ -86,7 +86,7 @@ if ( ! class_exists( 'SC_Nav_Menus' ) ) :
 						$newItem['menu_item_parent'] = '{{'. $temp_menus_mapping_items[$old_parent_id] . '}}';
 					}
 
-					$newItem[$index_key] = $index_key;
+					$newItem['key'] = $index_key;
 					$item['items'][$index_key] = $newItem;
 				}
 

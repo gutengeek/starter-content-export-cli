@@ -168,6 +168,9 @@ if ( ! class_exists( 'SC_Cli_Data_Command' ) ):
 	     * @oaram array $items
 	     */
 	    public function write_file( $type = '', $items = array() ) {
+	    	global $wp_filesystem;
+	    	require_once ( ABSPATH . '/wp-admin/includes/file.php' );
+    		WP_Filesystem();
 	    	// make dir if its not exists
 			if ( ! is_dir( $this->starter_dir ) ) {
 				wp_mkdir_p( $this->starter_dir );
