@@ -86,6 +86,7 @@ if ( ! class_exists( 'SC_Nav_Menus' ) ) :
 						$newItem['menu_item_parent'] = '{{'. $temp_menus_mapping_items[$old_parent_id] . '}}';
 					}
 
+					$newItem[$index_key] = $index_key;
 					$item['items'][$index_key] = $newItem;
 				}
 
