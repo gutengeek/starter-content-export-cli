@@ -60,7 +60,7 @@ if ( ! class_exists( 'SC_Posts' ) ) :
 			}
 
 			$this->items = array_merge( $this->get_posts(), $this->tmpItems );
-			$igore_keys = [ '_customize_changeset_uuid', '_edit_lock' ];
+			$ignore_keys = [ '_customize_changeset_uuid', '_edit_lock', '_menu_item_menu_item_parent', '_menu_item_menu_item_parent' ];
 			foreach ( $this->items as $key => $item ) {
 				$thumb = get_post_thumbnail_id( $item['ID'] );
 				if ( $thumb ) {
@@ -73,8 +73,8 @@ if ( ! class_exists( 'SC_Posts' ) ) :
 					$meta_input = [];
 					$meta_data = get_post_meta( $item['ID'] );
 					foreach ( $meta_data as $meta_key => $value ) {
-						if ( ! in_array( $meta_key, $igore_keys ) ) {
-							$meta_input[$meta_key] = is_array( $value ) && count( $value ) > 1 ? $value : $value[0];
+						if ( ! in_array( $meta_key, $ignore_keys ) ) {
+							$meta_input[$meta_key] = is_array( $value ) && count( $value ) > 1 ? $value : maybe_unserialize( $value[0] );
 						}
 					}
 					if ( $meta_input ) {

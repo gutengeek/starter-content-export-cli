@@ -73,6 +73,16 @@ if ( ! class_exists( 'SC_Nav_Menus' ) ) :
 						// update object_id
 						if ( $menu_item->type !== 'custom' ) {
 							$item['items'][$nav_menu_index]['object_id'] = '{{' . $post_key . '}}';
+						} else {
+							// menu item type 'custom' could not have 'object_id' key
+							// $item['items'][$nav_menu_index]['object_id'] = '{{' . $post_key . '}}';
+							$post_args['meta_input'] = [
+								'_hi_starter_content_nav_menu_symbol' => $nav_menu_index,
+								// '_menu_item_object_id' => '{{'.$post_key.'}}',
+								'_menu_item_classes' => get_post_meta( $post->ID, '_menu_item_classes', true ),
+								'_menu_item_url' => get_post_meta( $post->ID, '_menu_item_classes', true ),
+								'_menu_item_xfn' => get_post_meta( $post->ID, '_menu_item_xfn', true ),
+							];
 						}
 						// storage posts
 						$this->posts[ $post_key ] = $post_args;
@@ -96,13 +106,19 @@ if ( ! class_exists( 'SC_Nav_Menus' ) ) :
 
 			// loop menus created and pass its to location
 			foreach ( $menus as $menu_key => $menu_data ) {
+				$find = false;
 				foreach ( $menu_locations as $name => $nav_menu_id ) {
 					if ( isset( $menu_data['term_id'] ) && $nav_menu_id == $menu_data['term_id'] ) {
 						unset( $menus[$menu_key], $menu_data['term_id'] );
 						// assign menu to location
 						$menus[$name] = $menu_data;
+						$find = true;
 						break;
 					}
+				}
+				if ( ! $find ) {
+					unset( $menu_data['term_id'] );
+					$menus[$menu_key] = $menu_data;
 				}
 			}
 
